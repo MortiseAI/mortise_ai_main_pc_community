@@ -156,8 +156,8 @@ MLC 引擎未来计划 : 当前版本已发布支持 Node.js 和 Web React Libra
 
 - [Github Discussion](https://github.com/MortiseAI/mortise_ai_main_pc_community/discussions). 👉：分享您的应用程序并与社区交流。
 - [GitHub Issues](https://github.com/MortiseAI/mortise_ai_main_pc_community/issues)。👉：提交 MortiseAI 时遇到的错误和问题。
-- [电子邮件支持](developer.mai@outlook.com) 👉：关于 MortiseAI 使用的问题。
-- [商业合作](business.mai@outlook.com) 👉：有关 MortiseAI 的商业咨询与合作。
+- [电子邮件支持]() developer.mai@outlook.com 👉：关于 MortiseAI 使用的问题。
+- [商业合作]() business.mai@outlook.com 👉：有关 MortiseAI 的商业咨询与合作。
 - [开发者社区]() 👉：扫描下方二维码，添加微信好友，备注 MAI，我们将邀请您加入 MortiseAI 开发者社区。
 
   <img  src="https://mai-img-resource.oss-rg-china-mainland.aliyuncs.com/mai-main-bd/mai_login_biz_webcaht_vcode_qr_code.jpg"  alt="wechat"  width="100"/>
