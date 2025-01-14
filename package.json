@@ -1,0 +1,38 @@
+{
+  "name": "com.mortise.ai.community",
+  "version": "0.0.1",
+  "description": "Mortise AI PC Project",
+  "main": "./dist/MaiMain.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "prestart": "rm -rf ./dist/ & tsc"
+  },
+  "files": [
+    "dist/",
+    "src/",
+    "package.json",
+    "config.json"
+  ],
+  "author": "Mai@Developer <developer.mai@outlook.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@electron-forge/cli": "^6.4.2",
+    "@electron-forge/maker-deb": "^6.1.1",
+    "@electron-forge/maker-rpm": "^6.1.1",
+    "@electron-forge/maker-squirrel": "^6.1.1",
+    "@electron-forge/maker-zip": "^6.1.1",
+    "@types/crypto-js": "^4.2.1",
+    "@types/uuid": "^9.0.7",
+    "electron": "^24.8.8",
+    "electron-rebuild": "^3.2.9",
+    "electron-reloader": "^1.2.3",
+    "typescript": "5.0.4"
+  },
+  "dependencies": {
+    "@mai-alpha/mai-mlc-core-tsc": "^0.0.2-snapshot",
+    "@mai-community/mai-native-community-lib": "^0.1.0"
+  }
+}

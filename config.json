@@ -1,0 +1,11 @@
+{
+  "MaiDebug": false,
+  "MaiHost": "",
+  "MaiPort": "",
+  "MaiSplashPage": "splash",
+  "MaiLoginPage": "login",
+  "MaiMainPage": "main",
+  "MaiAgentPage": "agent",
+  "MaiKnowledgePage": "knowledge",
+  "MaiCodePage": "code"
+}

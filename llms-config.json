@@ -1,0 +1,26 @@
+{
+  "OpenAI": {
+    "OpenAI|AccessKey": "",
+    "OpenAI|ProjectID": ""
+  },
+  "DeepSeek": {
+    "DeepSeek|ApiKey": ""
+  },
+  "VolcArk": {
+    "VolcArk|ApiKey": "",
+    "VolcArk|Doubao_Pro_32k_FunctionCall": "",
+    "VolcArk|Doubao_Pro_128k": ""
+  },
+  "BaiLian": {
+    "BaiLian|ApiKey": ""
+  },
+  "QianFan": {
+    "QianFan|ApiKey": "",
+    "QianFan|SecretKey": ""
+  },
+  "DefLLMs": {
+    "MPrompt": "mortise-ai-veda",
+    "MDD": "mortise-ai-veda",
+    "MCode": "mortise-ai-veda"
+  }
+}
