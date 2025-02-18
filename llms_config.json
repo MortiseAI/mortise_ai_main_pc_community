@@ -21,7 +21,7 @@
   },
   "DefLLMs": {
     "ChatMPrompt": "mortise-ai-veda|ds-v3",
-    "ChatMDD": "mortise-ai-veda|doubao-fc-32k",
+    "ChatMDD": "mortise-ai-veda|qwen-max-latest",
     "ChatMCode": "mortise-ai-veda|ds-v3",
     "ChatMKnowledge": "mortise-ai-veda|ds-v3",
     "GenerateMdd": "mortise-ai-veda|ds-v3",
