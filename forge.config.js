@@ -24,8 +24,11 @@ module.exports = {
             if (fs.existsSync('config.json')) {
                 await fs.copy('config.json', 'dist/config.json');
             }
-            if (fs.existsSync('llms-config.json')) {
-                await fs.copy('llms-config.json', 'dist/llms-config.json');
+            if (fs.existsSync('llms_config.json')) {
+                await fs.copy('llms_config.json', 'dist/llms_config.json');
+            }
+            if (fs.existsSync('agent_config.json')) {
+                await fs.copy('agent_config.json', 'dist/agent_config.json');
             }
         },
     },

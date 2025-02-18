@@ -1,0 +1,31 @@
+{
+  "OpenAI": {
+    "OpenAI|AccessKey": "",
+    "OpenAI|ProjectID": ""
+  },
+  "DeepSeek": {
+    "DeepSeek|ApiKey": ""
+  },
+  "VolcArk": {
+    "VolcArk|ApiKey": "",
+    "VolcArk|Doubao_Pro_32k_FunctionCall": "",
+    "VolcArk|Doubao_Pro_128k": "",
+    "VolcArk|Doubao_Pro_256k": ""
+  },
+  "BaiLian": {
+    "BaiLian|ApiKey": ""
+  },
+  "QianFan": {
+    "QianFan|ApiKey": "",
+    "QianFan|SecretKey": "0"
+  },
+  "DefLLMs": {
+    "ChatMPrompt": "mortise-ai-veda|ds-v3",
+    "ChatMDD": "mortise-ai-veda|doubao-fc-32k",
+    "ChatMCode": "mortise-ai-veda|ds-v3",
+    "ChatMKnowledge": "mortise-ai-veda|ds-v3",
+    "GenerateMdd": "mortise-ai-veda|ds-v3",
+    "GenerateMCode": "mortise-ai-veda|ds-v3",
+    "GenerateMCodeReasoning": "mortise-ai-veda|ds-r1"
+  }
+}

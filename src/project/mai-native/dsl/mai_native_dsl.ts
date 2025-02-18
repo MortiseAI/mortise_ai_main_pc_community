@@ -22,10 +22,12 @@ export function mai_native_dsl() {
             "name": "MaiNativeSettingsLogic",
             "logic": "MaiNativeSettingsLogic",
         },
+
         {
             "name": "MaiNativeLLMsLogic",
             "logic": "MaiNativeLLMsLogic",
         },
+
         {
             "name": "MaiNativeMCubeLogic",
             "logic": "MaiNativeMCubeLogic",
@@ -42,6 +44,7 @@ export function mai_native_dsl() {
             "name": "MaiNativeMCodeLogic",
             "logic": "MaiNativeMCodeLogic",
         },
+
         {
             "name": "MaiNativeKnowledgeLogic",
             "logic": "MaiNativeKnowledgeLogic",
@@ -100,8 +103,8 @@ export function mai_native_dsl() {
             "logic": "MaiLLMsQianFanLogic",
         },
         {
-            "name": "MaiLLMsMVedaLogic",
-            "logic": "MaiLLMsMVedaLogic",
+            "name": "MaiLLMsVedaLogic",
+            "logic": "MaiLLMsVedaLogic",
         },
         // [0001 初始化时序] 2.再初始化 Agent
         {
@@ -125,8 +128,16 @@ export function mai_native_dsl() {
             "logic": "MaiNativeAgentAppLogic",
         },
         {
-            "name": "MaiAgentAppMVedaLogic",
-            "logic": "MaiAgentAppMVedaLogic",
+            "name": "MaiAgentAppLogic",
+            "logic": "MaiAgentAppLogic",
+        },
+        {
+            "name": "MaiAgentAppCustomLogic",
+            "logic": "MaiAgentAppCustomLogic",
+        },
+        {
+            "name": "MaiNativeChatLogic",
+            "logic": "MaiNativeChatLogic",
         },
     ])
 
@@ -293,6 +304,14 @@ export function mai_native_dsl() {
                         "mai_magent_init",
 
                     ]
+                },
+                {
+                    "sender": "MaiNativeChatLogic",
+                    "action": [
+                        "mai_main_chat_mprompt_get",
+                        "mai_main_chat_mdd_get",
+                        "mai_main_chat_mcode_get",
+                    ]
                 }
             ]
         },
@@ -301,7 +320,7 @@ export function mai_native_dsl() {
             "workflow": "MaiNativeLLMsWorkflow",
             "events": [
                 {
-                    "sender": "MaiLLMsMVedaLogic",
+                    "sender": "MaiLLMsVedaLogic",
                     "action": [
                         "mai_llms_register_models",
                         "mai_llms_chat_task_stop",
@@ -310,6 +329,7 @@ export function mai_native_dsl() {
                         "mai_llms_chat_task_send_knowledge_message_result",
                         "mai_llms_task_mdd_prompt_result",
                         "mai_llms_task_mcode_generate_result",
+                        "mai_llms_task_mcode_agent_app_execute",
                     ]
                 },
                 {
@@ -323,6 +343,7 @@ export function mai_native_dsl() {
                         "mai_llms_chat_task_send_knowledge_message_result",
                         "mai_llms_task_mdd_prompt_result",
                         "mai_llms_task_mcode_generate_result",
+                        "mai_llms_task_mcode_agent_app_execute",
                     ]
                 },
                 {
@@ -336,6 +357,7 @@ export function mai_native_dsl() {
                         "mai_llms_chat_task_send_knowledge_message_result",
                         "mai_llms_task_mdd_prompt_result",
                         "mai_llms_task_mcode_generate_result",
+                        "mai_llms_task_mcode_agent_app_execute",
                     ]
                 },
                 {
@@ -349,6 +371,7 @@ export function mai_native_dsl() {
                         "mai_llms_chat_task_send_knowledge_message_result",
                         "mai_llms_task_mdd_prompt_result",
                         "mai_llms_task_mcode_generate_result",
+                        "mai_llms_task_mcode_agent_app_execute",
                     ]
                 },
                 {
@@ -362,6 +385,7 @@ export function mai_native_dsl() {
                         "mai_llms_chat_task_send_knowledge_message_result",
                         "mai_llms_task_mdd_prompt_result",
                         "mai_llms_task_mcode_generate_result",
+                        "mai_llms_task_mcode_agent_app_execute",
                     ]
                 },
                 {
@@ -375,6 +399,7 @@ export function mai_native_dsl() {
                         "mai_llms_chat_task_send_knowledge_message_result",
                         "mai_llms_task_mdd_prompt_result",
                         "mai_llms_task_mcode_generate_result",
+                        "mai_llms_task_mcode_agent_app_execute",
                     ]
                 },
                 {
@@ -430,10 +455,16 @@ export function mai_native_dsl() {
                     ]
                 },
                 {
-                    "sender": "MaiAgentAppMVedaLogic",
+                    "sender": "MaiAgentAppLogic",
                     "action": [
                         "mai_agent_app_register",
                         "mai_agent_app_execute_result"
+                    ]
+                },
+                {
+                    "sender": "MaiAgentAppCustomLogic",
+                    "action": [
+                        "mai_agent_app_custom_execute_result"
                     ]
                 }
             ]

@@ -10,12 +10,9 @@ import {mai_native_login_dsl} from "../../project/mai-native-login/dsl/mai_nativ
 import {MaiNativeLoginWorkflow} from "../../project/mai-native-login/workflow/MaiNativeLoginWorkflow";
 import {MaiNativeAgentAppWorkflow} from "../../project/mai-native/workflow/MaiNativeAgentAppWorkflow";
 import {
-    MaiAgentAppMVedaActionKeys,
-    MaiAgentAppMVedaLogic, MaiAgentAppMVedaStateKeys,
     MaiEmbeddingVolcEngineLogic, MaiEmbeddingVolcEngineLogicActionKeys, MaiEmbeddingVolcEngineLogicStateKeys,
     MaiLLMsBaiLianLogic, MaiLLMsBaiLianLogicActionKeys, MaiLLMsBaiLianLogicStateKeys,
     MaiLLMsDeepSeekLogic, MaiLLMsDeepSeekLogicActionKeys, MaiLLMsDeepSeekLogicStateKeys,
-    MaiLLMsMVedaLogic, MaiLLMsMVedaLogicActionKeys, MaiLLMsMVedaLogicStateKeys,
     MaiLLMsOpenAILogic,
     MaiLLMsOpenAILogicActionKeys, MaiLLMsOpenAILogicStateKeys,
     MaiLLMsQianFanLogic, MaiLLMsQianFanLogicActionKeys, MaiLLMsQianFanLogicStateKeys,
@@ -52,9 +49,16 @@ import {
     MaiNativeSettingsLogic,
     MaiNativeSettingsLogicActionKeys, MaiNativeSettingsLogicStateKeys,
     MaiNativeUserLogic,
-    MaiNativeUserLogicActionKeys, MaiNativeUserLogicStateKeys
+    MaiNativeUserLogicActionKeys, MaiNativeUserLogicStateKeys,
+    MaiNativeChatLogic,
+    MaiNativeChatLogicActionKeys,MaiNativeChatLogicStateKeys,
+    MaiAgentAppCustomActionKeys,
+    MaiAgentAppCustomLogic, MaiAgentAppCustomStateKeys,
+    MaiAgentAppLogic,
+    MaiAgentAppActionKeys,  MaiAgentAppStateKeys,
+    MaiLLMsVedaLogic,
+    MaiLLMsVedaLogicStateKeys, MaiLLMsVedaLogicActionKeys
 } from "@mai-community/mai-native-community-lib";
-
 
 export class MlcEvn implements IMlcEnv {
 
@@ -77,20 +81,21 @@ export class MlcEvn implements IMlcEnv {
         MaiNativeMPromptLogic,
         MaiNativeAgentLogic,
         MaiNativeAgentAppLogic,
+        MaiNativeChatLogic,
         /** mai-llms **/
         MaiLLMsOpenAILogic,
         MaiLLMsVolcArkLogic,
         MaiLLMsDeepSeekLogic,
         MaiLLMsBaiLianLogic,
         MaiLLMsQianFanLogic,
-        MaiLLMsMVedaLogic,
+        MaiLLMsVedaLogic,
         /** mai-agent-function-calling **/
         MaiMCubeViewAgentLogic,
         MaiMCubeDslAgentLogic,
         MaiMCubeLogicAgentLogic,
         MaiMCubWorkflowAgentLogic,
         /** mai-agent-app **/
-        MaiAgentAppMVedaLogic,
+        MaiAgentAppLogic,
         /** mai-knowledge **/
         MaiMCubKnowledgeLogic,
         /** mai-knowledge-embedding **/
@@ -100,6 +105,7 @@ export class MlcEvn implements IMlcEnv {
         MaiMCubeDslCodeLogic,
         MaiMCubeLogicCodeLogic,
         MaiMCubeWorkflowCodeLogic,
+        MaiAgentAppCustomLogic,
     }
 
     private _mortiseWorkflow: any = {
@@ -134,20 +140,21 @@ export class MlcEvn implements IMlcEnv {
         MaiNativeSettingsLogicActionKeys,
         MaiNativeAgentLogicActionKeys,
         MaiNativeAgentAppLogicActionKeys,
+        MaiNativeChatLogicActionKeys,
         /** mai-llms **/
         MaiLLMsOpenAILogicActionKeys,
         MaiLLMsVolcArkLogicActionKeys,
         MaiLLMsDeepSeekLogicActionKeys,
         MaiLLMsBaiLianLogicActionKeys,
         MaiLLMsQianFanLogicActionKeys,
-        MaiLLMsMVedaLogicActionKeys,
+        MaiLLMsVedaLogicActionKeys,
         /** mai-agent-function-calling **/
         MaiMCubeViewAgentActionKeys,
         MaiMCubeDslAgentActionKeys,
         MaiMCubeLogicAgentActionKeys,
         MaiMCubeWorkflowAgentActionKeys,
         /** mai-agent-app **/
-        MaiAgentAppMVedaActionKeys,
+        MaiAgentAppActionKeys,
         /** mai-knowledge **/
         MaiMCubeKnowledgeActionKeys,
         /** mai-knowledge-embedding **/
@@ -157,6 +164,7 @@ export class MlcEvn implements IMlcEnv {
         MaiMCubeDslCodeActionKeys,
         MaiMCubeLogicCodeActionKeys,
         MaiMCubeWorkflowCodeActionKeys,
+        MaiAgentAppCustomActionKeys,
     }
 
     private _stateKeys: any = {
@@ -173,20 +181,21 @@ export class MlcEvn implements IMlcEnv {
         MaiNativeSettingsLogicStateKeys,
         MaiNativeAgentLogicStateKeys,
         MaiNativeAgentAppLogicStateKeys,
+        MaiNativeChatLogicStateKeys,
         /** mai-llms **/
         MaiLLMsOpenAILogicStateKeys,
         MaiLLMsVolcArkLogicStateKeys,
         MaiLLMsDeepSeekLogicStateKeys,
         MaiLLMsBaiLianLogicStateKeys,
         MaiLLMsQianFanLogicStateKeys,
-        MaiLLMsMVedaLogicStateKeys,
+        MaiLLMsVedaLogicStateKeys,
         /** mai-agent-function-calling **/
         MaiMCubeViewAgentStateKeys,
         MaiMCubeDslAgentStateKeys,
         MaiMCubeLogicAgentStateKeys,
         MaiMCubeWorkflowAgentStateKeys,
         /** mai-agent-app **/
-        MaiAgentAppMVedaStateKeys,
+        MaiAgentAppStateKeys,
         /** mai-knowledge **/
         MaiMCubeKnowledgeStateKeys,
         /** mai-knowledge-embedding **/
@@ -196,6 +205,7 @@ export class MlcEvn implements IMlcEnv {
         MaiMCubeDslCodeStateKeys,
         MaiMCubeLogicCodeStateKeys,
         MaiMCubeWorkflowCodeStateKeys,
+        MaiAgentAppCustomStateKeys,
     }
 
     private _sidecar: any = {}
@@ -232,3 +242,4 @@ export class MlcEvn implements IMlcEnv {
     }
 
 }
+

@@ -160,7 +160,7 @@ export class MaiNativeWorkflow extends MlcWorkflow {
                                 .build()
                             this.sendStateEventObj(event3)
                             break
-                        case "BaiLian":
+                        case "AliBaiLian":
                             const model4 = new MaiLLMsDeepSeekLogicStateModel()
                             model4.settingsData = {...llmsSettings}
                             const event4 = MlcStateEvent.obtain()

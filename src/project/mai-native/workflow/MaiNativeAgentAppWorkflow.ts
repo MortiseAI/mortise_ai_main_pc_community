@@ -1,5 +1,5 @@
 import {MlcActionEvent, MlcStateEvent, MlcWorkflow} from "@mai-alpha/mai-mlc-core-tsc";
-import {MaiAgentAppMVedaActionKeys, MaiNativeAgentAppLogicActionKeys, MaiNativeAgentAppLogicStateKeys, MaiNativeAgentAppLogicStateModel} from "@mai-community/mai-native-community-lib";
+import {MaiAgentAppActionKeys, MaiAgentAppCustomActionKeys, MaiNativeAgentAppLogicActionKeys, MaiNativeAgentAppLogicStateKeys, MaiNativeAgentAppLogicStateModel} from "@mai-community/mai-native-community-lib";
 
 export class MaiNativeAgentAppWorkflow extends MlcWorkflow {
 
@@ -8,8 +8,11 @@ export class MaiNativeAgentAppWorkflow extends MlcWorkflow {
             case "MaiNativeAgentAppLogic":
                 this.handleMaiNativeAgentAppLogic(event)
                 break
-            case "MaiAgentAppMVedaLogic":
-                this.handleMaiAgentAppMVedaLogic(event)
+            case "MaiAgentAppLogic":
+                this.handleMaiAgentAppLogic(event)
+                break
+            case "MaiAgentAppCustomLogic":
+                this.handleMaiAgentAppCustomLogic(event)
                 break
             default:
                 break
@@ -43,9 +46,9 @@ export class MaiNativeAgentAppWorkflow extends MlcWorkflow {
         }
     }
 
-    handleMaiAgentAppMVedaLogic(event: MlcActionEvent) {
+    handleMaiAgentAppLogic(event: MlcActionEvent) {
         switch (event.getMessage()) {
-            case MaiAgentAppMVedaActionKeys.MAI_AGENT_APP_REGISTER:
+            case MaiAgentAppActionKeys.MAI_AGENT_APP_REGISTER:
                 const model1 = new MaiNativeAgentAppLogicStateModel()
                 model1.agentAppModels = [...event.getModel().agentAppModels]
                 const event1 = MlcStateEvent.obtain()
@@ -56,7 +59,7 @@ export class MaiNativeAgentAppWorkflow extends MlcWorkflow {
                     .build()
                 this.sendStateEventObj(event1)
                 break
-            case MaiAgentAppMVedaActionKeys.MAI_AGENT_APP_EXECUTE_RESULT:
+            case MaiAgentAppActionKeys.MAI_AGENT_APP_EXECUTE_RESULT:
                 const model2: any = {...event.getModel()}
                 const event2 = MlcStateEvent.obtain()
                     .setSender(event.getSender())
@@ -65,6 +68,23 @@ export class MaiNativeAgentAppWorkflow extends MlcWorkflow {
                     .setModel(model2)
                     .build()
                 this.sendStateEventObj(event2)
+                break
+            default:
+                break
+        }
+    }
+
+    handleMaiAgentAppCustomLogic(event: MlcActionEvent) {
+        switch (event.getMessage()) {
+            case MaiAgentAppCustomActionKeys.MAI_AGENT_APP_CUSTOM_EXECUTE_RESULT:
+                const model1: any = {...event.getModel()}
+                const event1 = MlcStateEvent.obtain()
+                    .setSender(event.getSender())
+                    .setReceiver(event.getReceiver())
+                    .setMessage(event.getMessage())
+                    .setModel(model1)
+                    .build()
+                this.sendStateEventObj(event1)
                 break
             default:
                 break

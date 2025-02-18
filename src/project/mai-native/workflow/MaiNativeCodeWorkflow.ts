@@ -4,14 +4,14 @@ import {
     MaiMCubeLogicCodeActionKeys,
     MaiMCubeViewCodeActionKeys, MaiMCubeWorkflowCodeActionKeys,
     MaiNativeKnowledgeLogicStateKeys,
-    MaiNativeKnowledgeLogicStateModel, MaiNativeLLMsLogicStateKeys,
+    MaiNativeKnowledgeLogicStateModel,
+    MaiNativeLLMsLogicStateKeys,
     MaiNativeLLMsLogicStateModel,
     MaiNativeMCodeLogicStateKeys,
     MaiNativeMCodeLogicStateModel,
     MaiNativeMddLogicStateKeys,
     MaiNativeMddLogicStateModel
 } from "@mai-community/mai-native-community-lib";
-
 
 export class MaiNativeCodeWorkflow extends MlcWorkflow {
 
@@ -80,6 +80,8 @@ export class MaiNativeCodeWorkflow extends MlcWorkflow {
                 model4.mcodeLLMs = event.getModel().mcodeLLMs
                 model4.mcodeVersion = event.getModel().mcodeVersion
                 model4.mcodeContent = event.getModel().mcodeContent
+                model4.mcodeKnowledge = event.getModel().mcodeKnowledge
+                model4.mcodeAgent = event.getModel().mcodeAgent
                 const event4 = MlcStateEvent.obtain()
                     .setSender(event.getSender())
                     .setReceiver("MaiNativeLLMsLogic")
@@ -166,6 +168,8 @@ export class MaiNativeCodeWorkflow extends MlcWorkflow {
                 model4.mcodeLLMs = event.getModel().mcodeLLMs
                 model4.mcodeVersion = event.getModel().mcodeVersion
                 model4.mcodeContent = event.getModel().mcodeContent
+                model4.mcodeKnowledge = event.getModel().mcodeKnowledge
+                model4.mcodeAgent = event.getModel().mcodeAgent
                 const event4 = MlcStateEvent.obtain()
                     .setSender(event.getSender())
                     .setReceiver("MaiNativeLLMsLogic")
@@ -177,6 +181,8 @@ export class MaiNativeCodeWorkflow extends MlcWorkflow {
             case MaiMCubeLogicCodeActionKeys.MAI_MCODE_GENERATE_RESULT:
                 const model5 = new MaiNativeMCodeLogicStateModel()
                 model5.status = event.getModel().status
+                model5.mcubeID = event.getModel().mcubeID
+                model5.mcubeVersion = event.getModel().mcubeVersion
                 model5.generateResult = {...event.getModel().generateResult}
                 const event5 = MlcStateEvent.obtain()
                     .setSender(event.getSender())

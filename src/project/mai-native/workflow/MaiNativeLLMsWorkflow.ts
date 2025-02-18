@@ -1,15 +1,16 @@
 import {MlcActionEvent, MlcStateEvent, MlcWorkflow} from "@mai-alpha/mai-mlc-core-tsc";
 import {
-    MaiLLMsBaiLianLogicActionKeys,
-    MaiLLMsDeepSeekLogicActionKeys, MaiLLMsMVedaLogicActionKeys,
-    MaiLLMsOpenAILogicActionKeys,
-    MaiLLMsQianFanLogicActionKeys,
+    MaiAgentAppCustomStateKeys,
+    MaiAgentAppCustomStateModel, MaiLLMsBaiLianLogicActionKeys,
+    MaiLLMsDeepSeekLogicActionKeys,
+    MaiLLMsOpenAILogicActionKeys, MaiLLMsQianFanLogicActionKeys, MaiLLMsVedaLogicActionKeys,
     MaiLLMsVolcArkLogicActionKeys, MaiNativeLLMsLogicActionKeys,
     MaiNativeLLMsLogicStateKeys,
     MaiNativeLLMsLogicStateModel, MaiNativeMddLogicStateKeys, MaiNativeMddLogicStateModel,
     MaiNativeSettingsLogicStateKeys,
     MaiNativeSettingsLogicStateModel
 } from "@mai-community/mai-native-community-lib";
+
 
 export class MaiNativeLLMsWorkflow extends MlcWorkflow {
 
@@ -33,8 +34,8 @@ export class MaiNativeLLMsWorkflow extends MlcWorkflow {
             case "MaiLLMsQianFanLogic":
                 this.handleMaiLLMsQianFanLogic(event)
                 break
-            case "MaiLLMsMVedaLogic":
-                this.handleMaiLLMsMVedaLogic(event)
+            case "MaiLLMsVedaLogic":
+                this.handleMaiLLMsVedaLogic(event)
                 return
             default:
                 super.handleActionEvent(event);
@@ -71,7 +72,7 @@ export class MaiNativeLLMsWorkflow extends MlcWorkflow {
                 model3.taskChatResultData = {...event.getModel().taskChatResultData}
                 const event3 = MlcStateEvent.obtain()
                     .setSender(event.getSender())
-                    .setReceiver("MaiNativeLLMsLogic")
+                    .setReceiver(event.getReceiver() ? event.getReceiver() : "MaiNativeLLMsLogic")
                     .setMessage(MaiNativeLLMsLogicStateKeys.MAI_LLMS_LOGIC_CHAT_TASK_SEND_MESSAGE_RESULT)
                     .setModel(model3)
                     .build()
@@ -108,6 +109,9 @@ export class MaiNativeLLMsWorkflow extends MlcWorkflow {
                 model8.mcodeContent = event.getModel().mcodeContent
                 model8.mcodeInputToken = event.getModel().mcodeInputToken
                 model8.mcodeOutputToken = event.getModel().mcodeOutputToken
+                model8.mcodeInputPrice = event.getModel().mcodeInputPrice
+                model8.mcodeOutputPrice = event.getModel().mcodeOutputPrice
+                model8.mcodeExceType = event.getModel().mcodeExceType
                 const event8 = MlcStateEvent.obtain()
                     .setSender(event.getSender())
                     .setReceiver("MaiNativeLLMsLogic")
@@ -116,12 +120,25 @@ export class MaiNativeLLMsWorkflow extends MlcWorkflow {
                     .build()
                 this.sendStateEventObj(event8)
                 break
+            case MaiLLMsOpenAILogicActionKeys.MAI_LLMS_TASK_MCODE_AGENT_APP_EXECUTE:
+                const model9 = new MaiAgentAppCustomStateModel()
+                model9.agentAppKey = event.getModel().agentAppKey
+                model9.agentAppTaskID = event.getModel().agentAppTaskID
+                model9.agentContent = event.getModel().agentContent
+                const event9 = MlcStateEvent.obtain()
+                    .setSender(event.getSender())
+                    .setReceiver("MaiAgentAppCustomLogic")
+                    .setMessage(MaiAgentAppCustomStateKeys.MAI_AGENT_APP_CUSTOM_EXECUTE)
+                    .setModel(model9)
+                    .build()
+                this.sendStateEventObj(event9)
+                break
             default:
                 break
         }
     }
 
-    handleMaiLLMsVolcArkLogic(event: MlcActionEvent){
+    handleMaiLLMsVolcArkLogic(event: MlcActionEvent) {
         switch (event.getMessage()) {
             case MaiLLMsVolcArkLogicActionKeys.MAI_LLMS_REGISTER_MODELS:
                 const model1 = new MaiNativeLLMsLogicStateModel()
@@ -150,7 +167,7 @@ export class MaiNativeLLMsWorkflow extends MlcWorkflow {
                 model3.taskChatResultData = {...event.getModel().taskChatResultData}
                 const event3 = MlcStateEvent.obtain()
                     .setSender(event.getSender())
-                    .setReceiver("MaiNativeLLMsLogic")
+                    .setReceiver(event.getReceiver() ? event.getReceiver() : "MaiNativeLLMsLogic")
                     .setMessage(MaiNativeLLMsLogicStateKeys.MAI_LLMS_LOGIC_CHAT_TASK_SEND_MESSAGE_RESULT)
                     .setModel(model3)
                     .build()
@@ -187,6 +204,9 @@ export class MaiNativeLLMsWorkflow extends MlcWorkflow {
                 model8.mcodeContent = event.getModel().mcodeContent
                 model8.mcodeInputToken = event.getModel().mcodeInputToken
                 model8.mcodeOutputToken = event.getModel().mcodeOutputToken
+                model8.mcodeInputPrice = event.getModel().mcodeInputPrice
+                model8.mcodeOutputPrice = event.getModel().mcodeOutputPrice
+                model8.mcodeExceType = event.getModel().mcodeExceType
                 const event8 = MlcStateEvent.obtain()
                     .setSender(event.getSender())
                     .setReceiver("MaiNativeLLMsLogic")
@@ -195,12 +215,25 @@ export class MaiNativeLLMsWorkflow extends MlcWorkflow {
                     .build()
                 this.sendStateEventObj(event8)
                 break
+            case MaiLLMsVolcArkLogicActionKeys.MAI_LLMS_TASK_MCODE_AGENT_APP_EXECUTE:
+                const model9 = new MaiAgentAppCustomStateModel()
+                model9.agentAppKey = event.getModel().agentAppKey
+                model9.agentAppTaskID = event.getModel().agentAppTaskID
+                model9.agentContent = event.getModel().agentContent
+                const event9 = MlcStateEvent.obtain()
+                    .setSender(event.getSender())
+                    .setReceiver("MaiAgentAppCustomLogic")
+                    .setMessage(MaiAgentAppCustomStateKeys.MAI_AGENT_APP_CUSTOM_EXECUTE)
+                    .setModel(model9)
+                    .build()
+                this.sendStateEventObj(event9)
+                break
             default:
                 break
         }
     }
 
-    handleMaiLLMsDeepSeekLogic(event: MlcActionEvent){
+    handleMaiLLMsDeepSeekLogic(event: MlcActionEvent) {
         switch (event.getMessage()) {
             case MaiLLMsDeepSeekLogicActionKeys.MAI_LLMS_REGISTER_MODELS:
                 const model1 = new MaiNativeLLMsLogicStateModel()
@@ -229,7 +262,7 @@ export class MaiNativeLLMsWorkflow extends MlcWorkflow {
                 model3.taskChatResultData = {...event.getModel().taskChatResultData}
                 const event3 = MlcStateEvent.obtain()
                     .setSender(event.getSender())
-                    .setReceiver("MaiNativeLLMsLogic")
+                    .setReceiver(event.getReceiver() ? event.getReceiver() : "MaiNativeLLMsLogic")
                     .setMessage(MaiNativeLLMsLogicStateKeys.MAI_LLMS_LOGIC_CHAT_TASK_SEND_MESSAGE_RESULT)
                     .setModel(model3)
                     .build()
@@ -266,6 +299,9 @@ export class MaiNativeLLMsWorkflow extends MlcWorkflow {
                 model8.mcodeContent = event.getModel().mcodeContent
                 model8.mcodeInputToken = event.getModel().mcodeInputToken
                 model8.mcodeOutputToken = event.getModel().mcodeOutputToken
+                model8.mcodeInputPrice = event.getModel().mcodeInputPrice
+                model8.mcodeOutputPrice = event.getModel().mcodeOutputPrice
+                model8.mcodeExceType = event.getModel().mcodeExceType
                 const event8 = MlcStateEvent.obtain()
                     .setSender(event.getSender())
                     .setReceiver("MaiNativeLLMsLogic")
@@ -274,12 +310,25 @@ export class MaiNativeLLMsWorkflow extends MlcWorkflow {
                     .build()
                 this.sendStateEventObj(event8)
                 break
+            case MaiLLMsDeepSeekLogicActionKeys.MAI_LLMS_TASK_MCODE_AGENT_APP_EXECUTE:
+                const model9 = new MaiAgentAppCustomStateModel()
+                model9.agentAppKey = event.getModel().agentAppKey
+                model9.agentAppTaskID = event.getModel().agentAppTaskID
+                model9.agentContent = event.getModel().agentContent
+                const event9 = MlcStateEvent.obtain()
+                    .setSender(event.getSender())
+                    .setReceiver("MaiAgentAppCustomLogic")
+                    .setMessage(MaiAgentAppCustomStateKeys.MAI_AGENT_APP_CUSTOM_EXECUTE)
+                    .setModel(model9)
+                    .build()
+                this.sendStateEventObj(event9)
+                break
             default:
                 break
         }
     }
 
-    handleMaiLLMsQianFanLogic(event: MlcActionEvent){
+    handleMaiLLMsQianFanLogic(event: MlcActionEvent) {
         switch (event.getMessage()) {
             case MaiLLMsQianFanLogicActionKeys.MAI_LLMS_REGISTER_MODELS:
                 const model1 = new MaiNativeLLMsLogicStateModel()
@@ -308,7 +357,7 @@ export class MaiNativeLLMsWorkflow extends MlcWorkflow {
                 model3.taskChatResultData = {...event.getModel().taskChatResultData}
                 const event3 = MlcStateEvent.obtain()
                     .setSender(event.getSender())
-                    .setReceiver("MaiNativeLLMsLogic")
+                    .setReceiver(event.getReceiver() ? event.getReceiver() : "MaiNativeLLMsLogic")
                     .setMessage(MaiNativeLLMsLogicStateKeys.MAI_LLMS_LOGIC_CHAT_TASK_SEND_MESSAGE_RESULT)
                     .setModel(model3)
                     .build()
@@ -345,6 +394,9 @@ export class MaiNativeLLMsWorkflow extends MlcWorkflow {
                 model8.mcodeContent = event.getModel().mcodeContent
                 model8.mcodeInputToken = event.getModel().mcodeInputToken
                 model8.mcodeOutputToken = event.getModel().mcodeOutputToken
+                model8.mcodeInputPrice = event.getModel().mcodeInputPrice
+                model8.mcodeOutputPrice = event.getModel().mcodeOutputPrice
+                model8.mcodeExceType = event.getModel().mcodeExceType
                 const event8 = MlcStateEvent.obtain()
                     .setSender(event.getSender())
                     .setReceiver("MaiNativeLLMsLogic")
@@ -353,12 +405,25 @@ export class MaiNativeLLMsWorkflow extends MlcWorkflow {
                     .build()
                 this.sendStateEventObj(event8)
                 break
+            case MaiLLMsQianFanLogicActionKeys.MAI_LLMS_TASK_MCODE_AGENT_APP_EXECUTE:
+                const model9 = new MaiAgentAppCustomStateModel()
+                model9.agentAppKey = event.getModel().agentAppKey
+                model9.agentAppTaskID = event.getModel().agentAppTaskID
+                model9.agentContent = event.getModel().agentContent
+                const event9 = MlcStateEvent.obtain()
+                    .setSender(event.getSender())
+                    .setReceiver("MaiAgentAppCustomLogic")
+                    .setMessage(MaiAgentAppCustomStateKeys.MAI_AGENT_APP_CUSTOM_EXECUTE)
+                    .setModel(model9)
+                    .build()
+                this.sendStateEventObj(event9)
+                break
             default:
                 break
         }
     }
 
-    handleMaiLLMsBaiLianLogic(event: MlcActionEvent){
+    handleMaiLLMsBaiLianLogic(event: MlcActionEvent) {
         switch (event.getMessage()) {
             case MaiLLMsBaiLianLogicActionKeys.MAI_LLMS_REGISTER_MODELS:
                 const model1 = new MaiNativeLLMsLogicStateModel()
@@ -387,7 +452,7 @@ export class MaiNativeLLMsWorkflow extends MlcWorkflow {
                 model3.taskChatResultData = {...event.getModel().taskChatResultData}
                 const event3 = MlcStateEvent.obtain()
                     .setSender(event.getSender())
-                    .setReceiver("MaiNativeLLMsLogic")
+                    .setReceiver(event.getReceiver() ? event.getReceiver() : "MaiNativeLLMsLogic")
                     .setMessage(MaiNativeLLMsLogicStateKeys.MAI_LLMS_LOGIC_CHAT_TASK_SEND_MESSAGE_RESULT)
                     .setModel(model3)
                     .build()
@@ -424,6 +489,9 @@ export class MaiNativeLLMsWorkflow extends MlcWorkflow {
                 model8.mcodeContent = event.getModel().mcodeContent
                 model8.mcodeInputToken = event.getModel().mcodeInputToken
                 model8.mcodeOutputToken = event.getModel().mcodeOutputToken
+                model8.mcodeInputPrice = event.getModel().mcodeInputPrice
+                model8.mcodeOutputPrice = event.getModel().mcodeOutputPrice
+                model8.mcodeExceType = event.getModel().mcodeExceType
                 const event8 = MlcStateEvent.obtain()
                     .setSender(event.getSender())
                     .setReceiver("MaiNativeLLMsLogic")
@@ -432,14 +500,27 @@ export class MaiNativeLLMsWorkflow extends MlcWorkflow {
                     .build()
                 this.sendStateEventObj(event8)
                 break
+            case MaiLLMsBaiLianLogicActionKeys.MAI_LLMS_TASK_MCODE_AGENT_APP_EXECUTE:
+                const model9 = new MaiAgentAppCustomStateModel()
+                model9.agentAppKey = event.getModel().agentAppKey
+                model9.agentAppTaskID = event.getModel().agentAppTaskID
+                model9.agentContent = event.getModel().agentContent
+                const event9 = MlcStateEvent.obtain()
+                    .setSender(event.getSender())
+                    .setReceiver("MaiAgentAppCustomLogic")
+                    .setMessage(MaiAgentAppCustomStateKeys.MAI_AGENT_APP_CUSTOM_EXECUTE)
+                    .setModel(model9)
+                    .build()
+                this.sendStateEventObj(event9)
+                break
             default:
                 break
         }
     }
 
-    handleMaiLLMsMVedaLogic(event: MlcActionEvent){
+    handleMaiLLMsVedaLogic(event: MlcActionEvent) {
         switch (event.getMessage()) {
-            case MaiLLMsMVedaLogicActionKeys.MAI_LLMS_REGISTER_MODELS:
+            case MaiLLMsVedaLogicActionKeys.MAI_LLMS_REGISTER_MODELS:
                 const model1 = new MaiNativeLLMsLogicStateModel()
                 model1.llmsModels = [...event.getModel().llmsModels]
                 const event1 = MlcStateEvent.obtain()
@@ -450,18 +531,18 @@ export class MaiNativeLLMsWorkflow extends MlcWorkflow {
                     .build()
                 this.sendStateEventObj(event1)
                 break
-            case MaiLLMsMVedaLogicActionKeys.MAI_LLMS_CHAT_TASK_SEND_MESSAGE_RESULT:
+            case MaiLLMsVedaLogicActionKeys.MAI_LLMS_CHAT_TASK_SEND_MESSAGE_RESULT:
                 const model3 = new MaiNativeLLMsLogicStateModel()
                 model3.taskChatResultData = {...event.getModel().taskChatResultData}
                 const event3 = MlcStateEvent.obtain()
                     .setSender(event.getSender())
-                    .setReceiver("MaiNativeLLMsLogic")
+                    .setReceiver(event.getReceiver() ? event.getReceiver() : "MaiNativeLLMsLogic")
                     .setMessage(MaiNativeLLMsLogicStateKeys.MAI_LLMS_LOGIC_CHAT_TASK_SEND_MESSAGE_RESULT)
                     .setModel(model3)
                     .build()
                 this.sendStateEventObj(event3)
                 break
-            case MaiLLMsMVedaLogicActionKeys.MAI_LLMS_TASK_MDD_PROMPT_RESULT:
+            case MaiLLMsVedaLogicActionKeys.MAI_LLMS_TASK_MDD_PROMPT_RESULT:
                 const model6 = new MaiNativeLLMsLogicStateModel()
                 model6.taskID = event.getModel().taskID
                 model6.taskMddData = {...event.getModel().taskMddData}
@@ -473,7 +554,7 @@ export class MaiNativeLLMsWorkflow extends MlcWorkflow {
                     .build()
                 this.sendStateEventObj(event6)
                 break
-            case MaiLLMsMVedaLogicActionKeys.MAI_LLMS_CHAT_TASK_SEND_KNOWLEDGE_MESSAGE_RESULT:
+            case MaiLLMsVedaLogicActionKeys.MAI_LLMS_CHAT_TASK_SEND_KNOWLEDGE_MESSAGE_RESULT:
                 const model7 = new MaiNativeLLMsLogicStateModel()
                 model7.taskID = event.getModel().taskID
                 model7.taskChatResultData = {...event.getModel().taskChatResultData}
@@ -485,13 +566,16 @@ export class MaiNativeLLMsWorkflow extends MlcWorkflow {
                     .build()
                 this.sendStateEventObj(event7)
                 break
-            case MaiLLMsMVedaLogicActionKeys.MAI_LLMS_TASK_MCODE_GENERATE_RESULT:
+            case MaiLLMsVedaLogicActionKeys.MAI_LLMS_TASK_MCODE_GENERATE_RESULT:
                 const model8 = new MaiNativeLLMsLogicStateModel()
                 model8.mcodeKey = event.getModel().mcodeKey
                 model8.mcodeStatus = event.getModel().mcodeStatus
                 model8.mcodeContent = event.getModel().mcodeContent
                 model8.mcodeInputToken = event.getModel().mcodeInputToken
                 model8.mcodeOutputToken = event.getModel().mcodeOutputToken
+                model8.mcodeInputPrice = event.getModel().mcodeInputPrice
+                model8.mcodeOutputPrice = event.getModel().mcodeOutputPrice
+                model8.mcodeExceType = event.getModel().mcodeExceType
                 const event8 = MlcStateEvent.obtain()
                     .setSender(event.getSender())
                     .setReceiver("MaiNativeLLMsLogic")
@@ -499,6 +583,19 @@ export class MaiNativeLLMsWorkflow extends MlcWorkflow {
                     .setModel(model8)
                     .build()
                 this.sendStateEventObj(event8)
+                break
+            case MaiLLMsVedaLogicActionKeys.MAI_LLMS_TASK_MCODE_AGENT_APP_EXECUTE:
+                const model9 = new MaiAgentAppCustomStateModel()
+                model9.agentAppKey = event.getModel().agentAppKey
+                model9.agentAppTaskID = event.getModel().agentAppTaskID
+                model9.agentContent = event.getModel().agentContent
+                const event9 = MlcStateEvent.obtain()
+                    .setSender(event.getSender())
+                    .setReceiver("MaiAgentAppCustomLogic")
+                    .setMessage(MaiAgentAppCustomStateKeys.MAI_AGENT_APP_CUSTOM_EXECUTE)
+                    .setModel(model9)
+                    .build()
+                this.sendStateEventObj(event9)
                 break
             default:
                 break

@@ -60,6 +60,7 @@ contextBridge.exposeInMainWorld('MaiBridge', {
     handleMaiLLMsGetDefModel: () => ipcRenderer.send("mai_llms_get_def_model"),
     handleMaiLLMsSetDefModel: (params) => ipcRenderer.send("mai_llms_set_def_model", params),
     handleMaiLLMsTaskChatClear: (params) => ipcRenderer.send("mai_llms_task_chat_clear", params),
+    handleMaiLLMsTaskChatModelChange: (params) => ipcRenderer.send("mai_llms_task_chat_model_change", params),
     handleMaiLLMsTaskChatExecChange: (params) => ipcRenderer.send("mai_llms_task_chat_exec_change", params),
     handleMaiLLMsTaskChatMessageList: (params) => ipcRenderer.send("mai_llms_task_chat_message_list", params),
     handleMaiLLMsTaskChatSendMessage: (params) => ipcRenderer.send("mai_llms_task_chat_send_message", params),
@@ -153,6 +154,21 @@ contextBridge.exposeInMainWorld('MaiBridge', {
     handleMaiSettingsGetAll: () => ipcRenderer.send("mai_settings_get_all"),
     handleMaiSettingsRegistryCallback: (callback) => ipcRenderer.on("mai_settings_call_back", callback),
     handleMaiSettingsRemoveCallback: () => ipcRenderer.removeAllListeners('mai_settings_call_back'),
+
+    /** mai-native-chat **/
+    handleMaiChatMPromptGet: (params) => ipcRenderer.send("mai_main_chat_mprompt_get", params),
+    handleMaiChatMDDGet: (params) => ipcRenderer.send("mai_main_chat_mdd_get", params),
+    handleMaiChatMCodeGet: (params) => ipcRenderer.send("mai_main_chat_mcode_get", params),
+    handleMaiChatMessageList: (params) => ipcRenderer.send("mai_main_chat_message_list_get", params),
+    handleMaiChatMPromptAdd: (params) => ipcRenderer.send("mai_main_chat_mprompt_add", params),
+    handleMaiChatMDDAdd: (params) => ipcRenderer.send("mai_main_chat_mdd_add", params),
+    handleMaiChatMCodeAdd: (params) => ipcRenderer.send("mai_main_chat_mcode_add", params),
+    handleMaiChatMPromptDel: (params) => ipcRenderer.send("mai_main_chat_mprompt_del", params),
+    handleMaiChatMDDDel: (params) => ipcRenderer.send("mai_main_chat_mdd_del", params),
+    handleMaiChatMCodeDel: (params) => ipcRenderer.send("mai_main_chat_mcode_del", params),
+    handleMaiChatSendMessage: (params) => ipcRenderer.send("mai_main_chat_send_message", params),
+    handleMaiChatRegistryCallback: (callback) => ipcRenderer.on("mai_main_chat_call_back", callback),
+    handleMaiChatRemoveCallback: () => ipcRenderer.removeAllListeners('mai_main_chat_call_back'),
 
 })
 

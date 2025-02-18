@@ -12,7 +12,8 @@ import {
     MaiNativeMCubeLogicConstant,
     MaiNativeMddLogicConstant,
     MaiNativeMPromptLogicConstant,
-    MaiNativeSettingsLogicConstant
+    MaiNativeSettingsLogicConstant,
+    MaiNativeChatLogicConstant
 } from "@mai-community/mai-native-community-lib";
 
 let _primaryDisplay: any;
@@ -28,6 +29,7 @@ let _mainNativeLoginContainer, _mainNativeContainer: MlcContainer | null
 let _codeWindowMap = new Map<string, BrowserWindow>()
 
 const getMaiPageUrl = (page: string) => {
+    // return `http://localhost:22988/${page}.html`
     return `https://native.mortiseai.com/${page}.html`
 }
 
@@ -254,6 +256,7 @@ const defBrowserOpenUrl = (url: string, params?: any) => {
 app.whenReady().then(() => {
     initMaiNative()
     initMaiNativeLLMsConfig()
+    initMaiNativeAgentAppConfig()
     initMaiShortcut()
     registryMaiBridge()
     setTimeout(() => {
@@ -320,7 +323,7 @@ function initMaiNative() {
 }
 
 function initMaiNativeLLMsConfig() {
-    const _configFile = join(__dirname, "llms-config.json")
+    const _configFile = join(__dirname, "llms_config.json")
     if (fs.existsSync(_configFile)) {
         const _configContent = fs.readFileSync(_configFile, 'utf8');
         if (_configContent) {
@@ -329,6 +332,19 @@ function initMaiNativeLLMsConfig() {
                 Object.keys(_configData).forEach(key => {
                     (global as any)[key] = _configData[key];
                 });
+            }
+        }
+    }
+}
+
+function initMaiNativeAgentAppConfig() {
+    const _configFile = join(__dirname, "agent_config.json")
+    if (fs.existsSync(_configFile)) {
+        const _configContent = fs.readFileSync(_configFile, 'utf8');
+        if (_configContent) {
+            const _configData = JSON.parse(_configContent)
+            if (_configData) {
+                (global as any)["agentConfig"] = _configData;
             }
         }
     }
@@ -405,14 +421,12 @@ function handleMaiChangePage(event: any, data: any) {
 }
 
 function startMaiNativeLoginContainer() {
-
     if (_mainNativeContainer) {
         _mainNativeContainer.handleDestroyContainer()
         _mainNativeContainer = null
     }
-
     if (!_mainNativeLoginContainer) {
-        _mainNativeLoginContainer = new MlcContainer("mai_native_login_dsl")
+        _mainNativeLoginContainer = new MlcContainer("mai_native_login_dsl", (global as any).MaiDebug)
         _mainNativeLoginContainer.handlerCreateContainer({
             onActionEvent(event: MlcActionEvent): void {
                 switch (event.getSender()) {
@@ -440,7 +454,7 @@ function startMaiNativeContainer() {
         _mainNativeLoginContainer = null
     }
     if (!_mainNativeContainer) {
-        _mainNativeContainer = new MlcContainer("mai_native_dsl")
+        _mainNativeContainer = new MlcContainer("mai_native_dsl", (global as any).MaiDebug)
         _mainNativeContainer.handlerCreateContainer({
             onActionEvent(event: MlcActionEvent): void {
                 switch (event.getSender()) {
@@ -476,6 +490,9 @@ function startMaiNativeContainer() {
                         break
                     case "MaiNativeAgentAppLogic":
                         MaiNativeAgentAppLogic(event)
+                        break
+                    case "MaiNativeChatLogic":
+                        handleMaiNativeChatLogic(event)
                         break
                     default:
                         break
@@ -655,4 +672,15 @@ function handleMaiNativeMCodeLogic(event: MlcActionEvent) {
             })
     })
 }
+
+function handleMaiNativeChatLogic(event: MlcActionEvent) {
+    _mainWindow?.webContents.send(
+        MaiNativeChatLogicConstant.MAI_MAIN_CHAT_CALL_BACK,
+        {
+            message: event.getMessage(),
+            data: {...event.getModel()}
+        })
+}
+
+
 

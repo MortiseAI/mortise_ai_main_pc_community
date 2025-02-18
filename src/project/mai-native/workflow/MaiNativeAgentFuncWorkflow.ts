@@ -1,14 +1,5 @@
 import {MlcActionEvent, MlcStateEvent, MlcWorkflow} from "@mai-alpha/mai-mlc-core-tsc";
-import {
-    MaiMCubeDslAgentActionKeys,
-    MaiMCubeLogicAgentActionKeys,
-    MaiMCubeViewAgentActionKeys,
-    MaiMCubeWorkflowAgentActionKeys,
-    MaiNativeLLMsLogicStateKeys,
-    MaiNativeLLMsLogicStateModel,
-    MaiNativeMPromptLogicStateKeys,
-    MaiNativeMPromptLogicStateModel
-} from "@mai-community/mai-native-community-lib";
+import {MaiMCubeDslAgentActionKeys, MaiMCubeLogicAgentActionKeys, MaiMCubeViewAgentActionKeys, MaiMCubeWorkflowAgentActionKeys, MaiNativeLLMsLogicStateKeys, MaiNativeLLMsLogicStateModel, MaiNativeMPromptLogicStateKeys, MaiNativeMPromptLogicStateModel} from "@mai-community/mai-native-community-lib";
 
 export class MaiNativeAgentFuncWorkflow extends MlcWorkflow {
 

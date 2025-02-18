@@ -1,6 +1,7 @@
 import {MlcActionEvent, MlcStateEvent, MlcWorkflow} from "@mai-alpha/mai-mlc-core-tsc";
 import {MaiEmbeddingVolcEngineLogicActionKeys, MaiNativeEmbeddingLogicStateKeys, MaiNativeEmbeddingLogicStateModel} from "@mai-community/mai-native-community-lib";
 
+
 export class MaiNativeEmbeddingWorkflow extends MlcWorkflow {
 
     handleActionEvent(event: MlcActionEvent) {
@@ -13,7 +14,7 @@ export class MaiNativeEmbeddingWorkflow extends MlcWorkflow {
         }
     }
 
-    handleMaiEmbeddingVolcEngineLogic(event: MlcActionEvent) {
+    handleMaiEmbeddingVolcEngineLogic(event: MlcActionEvent){
         switch (event.getMessage()) {
             case MaiEmbeddingVolcEngineLogicActionKeys.MAI_EMBEDDING_REGISTER:
                 const model1 = new MaiNativeEmbeddingLogicStateModel()

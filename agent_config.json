@@ -1,0 +1,16 @@
+[
+  {
+    "type": "Coze",
+    "issId": "1171160074240",
+    "pubKey": "DXPiS1mAyKKePfWwxdklxTeH2Zd5kL5BLEt4eKcwigQ",
+    "privateKey": "",
+    "agentApp": [
+      {
+        "agentAppId": "",
+        "agentWorkflowIds": [
+          ""
+        ]
+      }
+    ]
+  }
+]
