@@ -22,12 +22,10 @@ export function mai_native_dsl() {
             "name": "MaiNativeSettingsLogic",
             "logic": "MaiNativeSettingsLogic",
         },
-
         {
             "name": "MaiNativeLLMsLogic",
             "logic": "MaiNativeLLMsLogic",
         },
-
         {
             "name": "MaiNativeMCubeLogic",
             "logic": "MaiNativeMCubeLogic",
@@ -44,7 +42,6 @@ export function mai_native_dsl() {
             "name": "MaiNativeMCodeLogic",
             "logic": "MaiNativeMCodeLogic",
         },
-
         {
             "name": "MaiNativeKnowledgeLogic",
             "logic": "MaiNativeKnowledgeLogic",
@@ -271,6 +268,7 @@ export function mai_native_dsl() {
                         "mai_mcode_generate_stop",
                         "mai_mcode_generate_stop_result",
                         "mai_mcode_generate_result",
+                        "mai_mcode_generate_stream_result",
                         "mai_mcode_content_get_result",
                         "mai_mcode_content_save_result",
                         "mai_mcode_control_result",
@@ -280,6 +278,7 @@ export function mai_native_dsl() {
                         "mai_mcode_fine_tuning_get_result",
                         "mai_mcode_fine_tuning_select_directory_result",
                         "mai_mcode_fine_tuning_export_result",
+                        "mai_mcode_generate_bill_get_data_result",
                     ]
                 },
                 {
@@ -329,6 +328,7 @@ export function mai_native_dsl() {
                         "mai_llms_chat_task_send_knowledge_message_result",
                         "mai_llms_task_mdd_prompt_result",
                         "mai_llms_task_mcode_generate_result",
+                        "mai_llms_task_mcode_generate_stream_result",
                         "mai_llms_task_mcode_agent_app_execute",
                     ]
                 },
@@ -343,6 +343,7 @@ export function mai_native_dsl() {
                         "mai_llms_chat_task_send_knowledge_message_result",
                         "mai_llms_task_mdd_prompt_result",
                         "mai_llms_task_mcode_generate_result",
+                        "mai_llms_task_mcode_generate_stream_result",
                         "mai_llms_task_mcode_agent_app_execute",
                     ]
                 },
@@ -357,6 +358,7 @@ export function mai_native_dsl() {
                         "mai_llms_chat_task_send_knowledge_message_result",
                         "mai_llms_task_mdd_prompt_result",
                         "mai_llms_task_mcode_generate_result",
+                        "mai_llms_task_mcode_generate_stream_result",
                         "mai_llms_task_mcode_agent_app_execute",
                     ]
                 },
@@ -371,6 +373,7 @@ export function mai_native_dsl() {
                         "mai_llms_chat_task_send_knowledge_message_result",
                         "mai_llms_task_mdd_prompt_result",
                         "mai_llms_task_mcode_generate_result",
+                        "mai_llms_task_mcode_generate_stream_result",
                         "mai_llms_task_mcode_agent_app_execute",
                     ]
                 },
@@ -385,6 +388,7 @@ export function mai_native_dsl() {
                         "mai_llms_chat_task_send_knowledge_message_result",
                         "mai_llms_task_mdd_prompt_result",
                         "mai_llms_task_mcode_generate_result",
+                        "mai_llms_task_mcode_generate_stream_result",
                         "mai_llms_task_mcode_agent_app_execute",
                     ]
                 },
@@ -399,6 +403,7 @@ export function mai_native_dsl() {
                         "mai_llms_chat_task_send_knowledge_message_result",
                         "mai_llms_task_mdd_prompt_result",
                         "mai_llms_task_mcode_generate_result",
+                        "mai_llms_task_mcode_generate_stream_result",
                         "mai_llms_task_mcode_agent_app_execute",
                     ]
                 },
@@ -421,8 +426,10 @@ export function mai_native_dsl() {
                         "mai_llms_table_data_update",
                         "mai_llms_mdd_get",
                         "mai_llms_task_mcode_generate_init",
+                        "mai_llms_task_mcode_generate_stop",
                         "mai_llms_task_mcode_generate",
                         "mai_llms_task_mcode_generate_result",
+                        "mai_llms_task_mcode_generate_stream_result",
                         "mai_llms_task_chat_queue",
                     ]
                 },
@@ -524,9 +531,11 @@ export function mai_native_dsl() {
                         "mai_mcode_get_mdd_data",
                         "mai_mcode_llms_data",
                         "mai_mcode_generate_result",
+                        "mai_mcode_generate_stream_result",
                         "mai_mcode_get_mknowledge_data",
                         "mai_mcode_llms_generate",
                         "mai_mcode_llms_generate_init",
+                        "mai_mcode_llms_generate_stop",
                     ]
                 },
                 {
@@ -536,9 +545,11 @@ export function mai_native_dsl() {
                         "mai_mcode_get_mdd_data",
                         "mai_mcode_llms_data",
                         "mai_mcode_generate_result",
+                        "mai_mcode_generate_stream_result",
                         "mai_mcode_get_mknowledge_data",
                         "mai_mcode_llms_generate",
                         "mai_mcode_llms_generate_init",
+                        "mai_mcode_llms_generate_stop",
                     ]
                 },
                 {
@@ -548,9 +559,11 @@ export function mai_native_dsl() {
                         "mai_mcode_get_mdd_data",
                         "mai_mcode_llms_data",
                         "mai_mcode_generate_result",
+                        "mai_mcode_generate_stream_result",
                         "mai_mcode_get_mknowledge_data",
                         "mai_mcode_llms_generate",
                         "mai_mcode_llms_generate_init",
+                        "mai_mcode_llms_generate_stop",
                     ]
                 },
                 {
@@ -560,9 +573,11 @@ export function mai_native_dsl() {
                         "mai_mcode_get_mdd_data",
                         "mai_mcode_llms_data",
                         "mai_mcode_generate_result",
+                        "mai_mcode_generate_stream_result",
                         "mai_mcode_get_mknowledge_data",
                         "mai_mcode_llms_generate",
                         "mai_mcode_llms_generate_init",
+                        "mai_mcode_llms_generate_stop",
                     ]
                 },
             ]

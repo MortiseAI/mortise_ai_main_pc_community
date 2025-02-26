@@ -117,6 +117,34 @@ export class MaiNativeCodeWorkflow extends MlcWorkflow {
                     .build()
                 this.sendStateEventObj(event6)
                 break
+            case MaiMCubeViewCodeActionKeys.MAI_MCODE_GENERATE_STREAM_RESULT:
+                const model7 = new MaiNativeMCodeLogicStateModel()
+                model7.mcubeID = event.getModel().mcubeID
+                model7.mcodeKey = event.getModel().mcodeKey
+                model7.mcodeContent = event.getModel().mcodeContent
+                model7.mcodeReasoningContent = event.getModel().mcodeReasoningContent
+                model7.generateResult = {...event.getModel().generateResult}
+                const event7 = MlcStateEvent.obtain()
+                    .setSender(event.getSender())
+                    .setReceiver("MaiNativeMCodeLogic")
+                    .setMessage(MaiNativeMCodeLogicStateKeys.MAI_MCODE_GENERATE_STREAM_RESULT)
+                    .setModel(model7)
+                    .build()
+                this.sendStateEventObj(event7)
+                break
+            case MaiMCubeViewCodeActionKeys.MAI_MCODE_LLMS_GENERATE_STOP:
+                const model8 = new MaiNativeLLMsLogicStateModel()
+                model8.mcodeID = event.getModel().mcodeID
+                model8.mcodeName = event.getModel().mcodeName
+                model8.mcodeLLMs = event.getModel().mcodeLLMs
+                const event8 = MlcStateEvent.obtain()
+                    .setSender(event.getSender())
+                    .setReceiver("MaiNativeLLMsLogic")
+                    .setMessage(MaiNativeLLMsLogicStateKeys.MAI_LLMS_MCODE_GENERATE_STOP)
+                    .setModel(model8)
+                    .build()
+                this.sendStateEventObj(event8)
+                break
             default:
                 break
         }
@@ -204,6 +232,34 @@ export class MaiNativeCodeWorkflow extends MlcWorkflow {
                     .setModel(model6)
                     .build()
                 this.sendStateEventObj(event6)
+                break
+            case MaiMCubeLogicCodeActionKeys.MAI_MCODE_GENERATE_STREAM_RESULT:
+                const model7 = new MaiNativeMCodeLogicStateModel()
+                model7.mcubeID = event.getModel().mcubeID
+                model7.mcodeKey = event.getModel().mcodeKey
+                model7.mcodeContent = event.getModel().mcodeContent
+                model7.mcodeReasoningContent = event.getModel().mcodeReasoningContent
+                model7.generateResult = {...event.getModel().generateResult}
+                const event7 = MlcStateEvent.obtain()
+                    .setSender(event.getSender())
+                    .setReceiver("MaiNativeMCodeLogic")
+                    .setMessage(MaiNativeMCodeLogicStateKeys.MAI_MCODE_GENERATE_STREAM_RESULT)
+                    .setModel(model7)
+                    .build()
+                this.sendStateEventObj(event7)
+                break
+            case MaiMCubeLogicCodeActionKeys.MAI_MCODE_LLMS_GENERATE_STOP:
+                const model8 = new MaiNativeLLMsLogicStateModel()
+                model8.mcodeID = event.getModel().mcodeID
+                model8.mcodeName = event.getModel().mcodeName
+                model8.mcodeLLMs = event.getModel().mcodeLLMs
+                const event8 = MlcStateEvent.obtain()
+                    .setSender(event.getSender())
+                    .setReceiver("MaiNativeLLMsLogic")
+                    .setMessage(MaiNativeLLMsLogicStateKeys.MAI_LLMS_MCODE_GENERATE_STOP)
+                    .setModel(model8)
+                    .build()
+                this.sendStateEventObj(event8)
                 break
             default:
                 break

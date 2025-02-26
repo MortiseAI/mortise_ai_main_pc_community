@@ -1,7 +1,6 @@
 import {MlcActionEvent, MlcStateEvent, MlcWorkflow} from "@mai-alpha/mai-mlc-core-tsc";
 import {MaiEmbeddingVolcEngineLogicActionKeys, MaiNativeEmbeddingLogicStateKeys, MaiNativeEmbeddingLogicStateModel} from "@mai-community/mai-native-community-lib";
 
-
 export class MaiNativeEmbeddingWorkflow extends MlcWorkflow {
 
     handleActionEvent(event: MlcActionEvent) {

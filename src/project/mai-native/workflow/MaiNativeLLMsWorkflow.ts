@@ -11,7 +11,6 @@ import {
     MaiNativeSettingsLogicStateModel
 } from "@mai-community/mai-native-community-lib";
 
-
 export class MaiNativeLLMsWorkflow extends MlcWorkflow {
 
     handleActionEvent(event: MlcActionEvent) {
@@ -597,6 +596,19 @@ export class MaiNativeLLMsWorkflow extends MlcWorkflow {
                     .build()
                 this.sendStateEventObj(event9)
                 break
+            case MaiLLMsVedaLogicActionKeys.MAI_LLMS_TASK_MCODE_GENERATE_STREAM_RESULT:
+                const model10 = new MaiNativeLLMsLogicStateModel()
+                model10.mcodeKey = event.getModel().mcodeKey
+                model10.mcodeContent = event.getModel().mcodeContent
+                model10.mcodeReasoningContent = event.getModel().mcodeReasoningContent
+                const event10 = MlcStateEvent.obtain()
+                    .setSender(event.getSender())
+                    .setReceiver("MaiNativeLLMsLogic")
+                    .setMessage(MaiNativeLLMsLogicStateKeys.MAI_LLMS_TASK_MCODE_GENERATE_STREAM_RESULT)
+                    .setModel(model10)
+                    .build()
+                this.sendStateEventObj(event10)
+                break
             default:
                 break
         }
@@ -726,6 +738,26 @@ export class MaiNativeLLMsWorkflow extends MlcWorkflow {
                     .setModel(model15)
                     .build()
                 this.sendStateEventObj(event15)
+                break
+            case MaiNativeLLMsLogicActionKeys.MAI_LLMS_TASK_MCODE_GENERATE_STREAM_RESULT:
+                const model16: any = {...event.getModel()}
+                const event16 = MlcStateEvent.obtain()
+                    .setSender(event.getSender())
+                    .setReceiver(event.getReceiver())
+                    .setMessage(event.getMessage())
+                    .setModel(model16)
+                    .build()
+                this.sendStateEventObj(event16)
+                break
+            case MaiNativeLLMsLogicActionKeys.MAI_LLMS_TASK_MCODE_GENERATE_STOP:
+                const model17: any = {...event.getModel()}
+                const event17 = MlcStateEvent.obtain()
+                    .setSender(event.getSender())
+                    .setReceiver(event.getReceiver())
+                    .setMessage(event.getMessage())
+                    .setModel(model17)
+                    .build()
+                this.sendStateEventObj(event17)
                 break
             default:
                 break

@@ -29,7 +29,6 @@ let _mainNativeLoginContainer, _mainNativeContainer: MlcContainer | null
 let _codeWindowMap = new Map<string, BrowserWindow>()
 
 const getMaiPageUrl = (page: string) => {
-    // return `http://localhost:22988/${page}.html`
     return `https://native.mortiseai.com/${page}.html`
 }
 

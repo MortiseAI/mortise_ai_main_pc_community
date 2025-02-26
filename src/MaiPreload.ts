@@ -135,6 +135,7 @@ contextBridge.exposeInMainWorld('MaiBridge', {
     handleMaiMCodeFineTuningGet: (params) => ipcRenderer.send("mai_mcode_fine_tuning_get", params),
     handleMaiMCodeFineTuningSelectDirectory: (params) => ipcRenderer.send("mai_mcode_fine_tuning_select_directory", params),
     handleMaiMCodeFineTuningExport: (params) => ipcRenderer.send("mai_mcode_fine_tuning_export", params),
+    handleMaiMCodeGenerateBillGetData: (params) => ipcRenderer.send("mai_mcode_generate_bill_get_data", params),
     handleMaiMCodeRegistryCallback: (callback) => ipcRenderer.on("mai_mcode_call_back", callback),
     handleMaiMCodeRemoveCallback: () => ipcRenderer.removeAllListeners('mai_mcode_call_back'),
 
@@ -171,6 +172,3 @@ contextBridge.exposeInMainWorld('MaiBridge', {
     handleMaiChatRemoveCallback: () => ipcRenderer.removeAllListeners('mai_main_chat_call_back'),
 
 })
-
-
-

@@ -1,6 +1,6 @@
 {
-  "name": "com.mortise.ai.community_v003",
-  "version": "0.0.3",
+  "name": "com.mortise.ai.community@004",
+  "version": "0.0.4",
   "description": "Mortise AI PC Project",
   "main": "./dist/MaiMain.js",
   "scripts": {
@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@mai-alpha/mai-mlc-core-tsc": "^0.0.2-snapshot",
-    "@mai-community/mai-native-community-lib": "^0.2.2",
+    "@mai-community/mai-native-community-lib": "^0.2.4",
     "reflect-metadata": "^0.2.2"
   }
 }
